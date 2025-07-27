@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Gene Information</h1>
+        <form id="gene-form">
+            <input type="text" id="gene-input" placeholder="Enter gene name (e.g., MSH2)" required>
+            <input type="text" id="variant-input" placeholder="Enter variant (e.g., A636P) (optional)">
+            <button type="submit">Get Info</button>
+        </form>
+        <div id="loader" style="display: none;"></div>
+        <div id="error-container"></div>
+        <div id="results-container" style="display: none;">
+            <h2 id="gene-name"></h2>
+            <p><strong>Variant:</strong> <span id="variant-name"></span></p>
+            
+            <h3>Gene Information</h3>
+            <p id="gene-description"></p>
+
+            <h3>Phenotype Information</h3>
+            <p id="phenotype-info"></p>
+
+            <h3>External Links</h3>
+            <ul>
+                <li><a id="omim-link" href="#" target="_blank">OMIM</a></li>
+                <li><a id="uniprot-link" href="#" target="_blank">UniProt</a></li>
+                <li><a id="pdb-link" href="#" target="_blank">PDB</a></li>
+                <li><a id="alphamissense-link" href="#" target="_blank">AlphaMissense</a></li>
+            </ul>
+
+            <h3>Sequences</h3>
+            <div class="sequence-box">
+                <h4>Wild Type Sequence</h4>
+                <textarea id="wild-type-sequence" readonly></textarea>
+                <button class="copy-btn" data-target="wild-type-sequence">Copy</button>
+            </div>
+            <div class="sequence-box">
+                <h4>Variant Sequence</h4>
+                <textarea id="variant-sequence" readonly></textarea>
+                <button class="copy-btn" data-target="variant-sequence">Copy</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 

@@ -1,0 +1,237 @@
+.gene-info-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.gene-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e0e6ed;
+}
+
+.gene-info-header h2 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  background: #95a5a6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+  background: #7f8c8d;
+  transform: translateY(-1px);
+}
+
+.gene-info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-section h3 {
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.info-item {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.info-item strong {
+  color: #34495e;
+  display: inline-block;
+  min-width: 120px;
+}
+
+.sequence-item {
+  margin-bottom: 1.5rem;
+}
+
+.sequence-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sequence-header strong {
+  color: #34495e;
+}
+
+.copy-button {
+  padding: 4px 12px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.copy-button:hover {
+  background: #2980b9;
+}
+
+.sequence-box {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-break: break-all;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.sequence-box.variant {
+  background: #fff3cd;
+  border-color: #ffeaa7;
+}
+
+.sequence-box code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  color: #2d3748;
+}
+
+.sequence-note {
+  color: #7f8c8d;
+  font-style: italic;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.external-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.external-link.uniprot {
+  background: #00d4aa;
+  color: white;
+}
+
+.external-link.uniprot:hover {
+  background: #00b894;
+  transform: translateY(-2px);
+}
+
+.external-link.pdb {
+  background: #ff7675;
+  color: white;
+}
+
+.external-link.pdb:hover {
+  background: #e84393;
+  transform: translateY(-2px);
+}
+
+.external-link.omim {
+  background: #fdcb6e;
+  color: #2d3436;
+}
+
+.external-link.omim:hover {
+  background: #f39c12;
+  transform: translateY(-2px);
+}
+
+.external-link.alphamissense {
+  background: #a29bfe;
+  color: white;
+}
+
+.external-link.alphamissense:hover {
+  background: #6c5ce7;
+  transform: translateY(-2px);
+}
+
+.error-message {
+  background: #ffeaea;
+  border: 1px solid #e74c3c;
+  border-radius: 6px;
+  padding: 12px;
+  color: #c0392b;
+  margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .gene-info-container {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+  
+  .gene-info-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .gene-info-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .info-section {
+    padding: 1rem;
+  }
+  
+  .sequence-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .links-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-item strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+}
