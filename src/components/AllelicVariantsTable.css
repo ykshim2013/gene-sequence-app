@@ -1,0 +1,348 @@
+/* AllelicVariantsTable.css */
+.allelic-variants-table {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.variants-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.variants-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.3em;
+}
+
+.variants-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.variant-count {
+  font-size: 0.9em;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.no-variants {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.no-variants p {
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+}
+
+.no-variants small {
+  color: #adb5bd;
+  line-height: 1.4;
+}
+
+.table-container {
+  overflow-x: auto;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  margin: 15px 0;
+}
+
+.variants-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: white;
+}
+
+.variants-table th {
+  background: #f8f9fa;
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.variants-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.variants-table th.sortable:hover {
+  background: #e9ecef;
+}
+
+.variants-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: top;
+}
+
+.variants-table tr:hover {
+  background: #f8f9fa;
+}
+
+.variant-number {
+  font-weight: 600;
+  color: #007bff;
+  min-width: 80px;
+  text-align: center;
+}
+
+.variant-name {
+  font-weight: 500;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.variant-mutation {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  max-width: 300px;
+  word-wrap: break-word;
+  color: #d63384;
+}
+
+.variant-phenotype {
+  max-width: 350px;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.variant-significance {
+  text-align: center;
+  min-width: 120px;
+}
+
+.significance-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.significance-badge.pathogenic {
+  background: #ffeaea;
+  color: #dc3545;
+  border: 1px solid #f5c6cb;
+}
+
+.significance-badge.likely-pathogenic {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.significance-badge.benign {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.significance-badge.likely-benign {
+  background: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #b8daff;
+}
+
+.significance-badge.uncertain-significance,
+.significance-badge.not-specified,
+.significance-badge.unknown {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.variant-links {
+  display: flex;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.omim-link, .clinvar-link {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.omim-link:hover, .clinvar-link:hover {
+  background: #0056b3;
+  color: white;
+  text-decoration: none;
+}
+
+.clinvar-link {
+  background: #28a745;
+}
+
+.clinvar-link:hover {
+  background: #1e7e34;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-top: 1px solid #e9ecef;
+  margin-top: 15px;
+}
+
+.page-button {
+  padding: 8px 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.page-button:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.page-button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.page-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.showing-info {
+  font-size: 0.85em;
+  color: #6c757d;
+}
+
+.table-footer {
+  text-align: center;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+  margin-top: 15px;
+}
+
+.table-footer small {
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.table-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.table-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .variants-table {
+    font-size: 13px;
+  }
+  
+  .variants-table th,
+  .variants-table td {
+    padding: 10px 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .variants-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .variants-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .search-input {
+    min-width: auto;
+  }
+  
+  .variants-table {
+    font-size: 12px;
+  }
+  
+  .variants-table th,
+  .variants-table td {
+    padding: 8px 4px;
+  }
+  
+  .variant-mutation,
+  .variant-phenotype {
+    max-width: 150px;
+  }
+  
+  .variant-links {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .allelic-variants-table {
+    padding: 15px;
+  }
+  
+  .variants-table {
+    font-size: 11px;
+  }
+  
+  .variant-name,
+  .variant-mutation,
+  .variant-phenotype {
+    max-width: 120px;
+  }
+}

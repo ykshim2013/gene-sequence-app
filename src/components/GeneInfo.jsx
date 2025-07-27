@@ -1,20 +1,11 @@
 import React from 'react';
+import SequenceViewer from './SequenceViewer';
+import AllelicVariantsTable from './AllelicVariantsTable';
 import './GeneInfo.css';
 
 const GeneInfo = ({ geneData, onReset }) => {
   if (!geneData) return null;
 
-  const formatSequence = (sequence, maxLength = 100) => {
-    if (!sequence || sequence === "Protein sequence not found" || sequence === "Protein sequence not available") {
-      return sequence;
-    }
-    
-    if (sequence.length <= maxLength) {
-      return sequence;
-    }
-    
-    return sequence.slice(0, maxLength) + '...';
-  };
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -44,9 +35,37 @@ const GeneInfo = ({ geneData, onReset }) => {
               <strong>Variant:</strong> {geneData.variant}
             </div>
           )}
+          {geneData.omim_number && (
+            <div className="info-item">
+              <strong>OMIM Number:</strong> {geneData.omim_number}
+            </div>
+          )}
+          {geneData.chromosome && (
+            <div className="info-item">
+              <strong>Chromosome:</strong> {geneData.chromosome}
+            </div>
+          )}
           <div className="info-item">
             <strong>Description:</strong> {geneData.description || 'No description available'}
           </div>
+          
+          {/* Data source indicators */}
+          {geneData.data_sources && (
+            <div className="info-item data-sources">
+              <strong>Data Sources:</strong>
+              <div className="source-indicators">
+                <span className={`source-badge ${geneData.data_sources.omim_available ? 'available' : 'unavailable'}`}>
+                  OMIM {geneData.data_sources.omim_available ? '✓' : '✗'}
+                </span>
+                <span className={`source-badge ${geneData.data_sources.ncbi_available ? 'available' : 'unavailable'}`}>
+                  NCBI {geneData.data_sources.ncbi_available ? '✓' : '✗'}
+                </span>
+                <span className={`source-badge ${geneData.data_sources.sequence_available ? 'available' : 'unavailable'}`}>
+                  Sequence {geneData.data_sources.sequence_available ? '✓' : '✗'}
+                </span>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Protein Sequences */}
@@ -54,45 +73,28 @@ const GeneInfo = ({ geneData, onReset }) => {
           <h3>Protein Sequences</h3>
           
           {geneData.wild_type_sequence && (
-            <div className="sequence-item">
-              <div className="sequence-header">
-                <strong>Wild Type Sequence:</strong>
-                <button 
-                  onClick={() => copyToClipboard(geneData.wild_type_sequence)}
-                  className="copy-button"
-                >
-                  Copy
-                </button>
-              </div>
-              <div className="sequence-box">
-                <code>{formatSequence(geneData.wild_type_sequence)}</code>
-              </div>
-              {geneData.wild_type_sequence.length > 100 && (
-                <small className="sequence-note">
-                  Showing first 100 characters. Full length: {geneData.wild_type_sequence.length} amino acids
-                </small>
-              )}
-            </div>
+            <SequenceViewer
+              sequence={geneData.wild_type_sequence}
+              title="Wild Type Sequence"
+              isVariant={false}
+              onCopy={copyToClipboard}
+            />
           )}
 
-          {geneData.variant_sequence && geneData.variant_sequence !== "Invalid variant format. Use format like 'A123G'." && (
-            <div className="sequence-item">
-              <div className="sequence-header">
-                <strong>Variant Sequence:</strong>
-                <button 
-                  onClick={() => copyToClipboard(geneData.variant_sequence)}
-                  className="copy-button"
-                >
-                  Copy
-                </button>
-              </div>
-              <div className="sequence-box variant">
-                <code>{formatSequence(geneData.variant_sequence)}</code>
-              </div>
-            </div>
+          {geneData.variant_sequence && 
+           !geneData.variant_sequence.includes("Invalid variant format") && 
+           !geneData.variant_sequence.includes("Error:") && (
+            <SequenceViewer
+              sequence={geneData.variant_sequence}
+              title={`Variant Sequence (${geneData.variant})`}
+              isVariant={true}
+              onCopy={copyToClipboard}
+            />
           )}
 
-          {geneData.variant_sequence && geneData.variant_sequence.includes("Invalid variant format") && (
+          {geneData.variant_sequence && 
+           (geneData.variant_sequence.includes("Invalid variant format") || 
+            geneData.variant_sequence.includes("Error:")) && (
             <div className="error-message">
               {geneData.variant_sequence}
             </div>
@@ -146,17 +148,26 @@ const GeneInfo = ({ geneData, onReset }) => {
                 AlphaMissense
               </a>
             )}
+            
+            {geneData.clinvar_link && (
+              <a 
+                href={geneData.clinvar_link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="external-link clinvar"
+              >
+                ClinVar
+              </a>
+            )}
           </div>
         </div>
 
-        {/* Phenotype Information */}
-        {geneData.phenotype && geneData.phenotype !== "Phenotype information is not yet implemented." && (
-          <div className="info-section">
-            <h3>Phenotype Information</h3>
-            <div className="info-item">
-              {geneData.phenotype}
-            </div>
-          </div>
+        {/* OMIM Allelic Variants */}
+        {geneData.allelic_variants && (
+          <AllelicVariantsTable 
+            variants={geneData.allelic_variants}
+            geneName={geneData.gene_name}
+          />
         )}
       </div>
     </div>
