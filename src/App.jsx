@@ -15,7 +15,7 @@ const App = () => {
     try {
       // Call the Flask backend
       const apiUrl = process.env.NODE_ENV === 'production' 
-        ? '/get_gene_info' 
+        ? '/api/get_gene_info' 
         : 'http://localhost:8082/get_gene_info';
       const response = await fetch(apiUrl, {
         method: 'POST',

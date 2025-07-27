@@ -2,22 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.py",
-      "use": "@vercel/python"
-    },
-    {
       "src": "package.json",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/get_gene_info",
-      "dest": "/test_app.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/$1"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ]
 }
